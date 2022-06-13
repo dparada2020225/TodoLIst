@@ -34,7 +34,7 @@ export const LoginButton= ()=> {
               color: 'inherit',
               textDecoration: 'none',
             }}>
-            Todo-List
+            Home
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
@@ -63,4 +63,3 @@ export const LoginButton= ()=> {
     </AppBar>
   );
 };
-

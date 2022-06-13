@@ -14,34 +14,53 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 
 import LogoutIcon from '@mui/icons-material/Logout';
-import PersonIcon from '@mui/icons-material/Person';
 import ManageAccountsSharpIcon from '@mui/icons-material/ManageAccountsSharp';
+
+import { useAuth0 } from '@auth0/auth0-react'
+import {Profile} from "../Profile/Profile"
+
+import Modal from '@mui/material/Modal';
 
 import './Nav.css'
 
-import { useAuth0 } from '@auth0/auth0-react'
-import {LoginButton} from "../Login/Login"
-import {LogoutButton} from "../Logout/Logout"
-import {Profile} from "../Profile/Profile"
 
 const drawerWidth = 240;
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 export function Nav() {
-    const { user, isAuthenticated } = useAuth0();
-    const {logout} = useAuth0();
+    const { user, logout, isLoading } = useAuth0();
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <AppBar
           position="fixed"
-          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-        >
+          sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}>
           <Toolbar>
             <Typography variant="h6" noWrap component="div">
-              Todo List 
+              Todo-List 
             </Typography>
           </Toolbar>
         </AppBar>
+
         <Drawer
           sx={{
             width: drawerWidth,
@@ -52,37 +71,59 @@ export function Nav() {
             },
           }}
           variant="permanent"
-          anchor="left"
-        >
+          anchor="left">
           
-          <Toolbar />
-          <Divider />
-          <img src={user.picture} alt={user.name} />
-          
-          <List>
-            
+          {/* <Toolbar /> */}
 
-              
-                <>{[user.name,user.email, 'Profile'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton >
-                  <ListItemIcon>
-                    {index === 0 ? <PersonIcon /> : <></>}
-                    {index === 1 ? <MailIcon /> :<></>}
-                    {index === 2 ? <ManageAccountsSharpIcon/> :<></>}
+          <img src={user.picture} alt={user.name} />
+          <Divider />
+          <List>
+              <>
+              <ListItem disablePadding>
+                <ListItemButton onClick={handleOpen} >
+                  
+                  <div>
+                  <Modal
+                    keepMounted
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="keep-mounted-modal-title"
+                    aria-describedby="keep-mounted-modal-description"
+                  > 
+                    <Box sx={style}>
+                    <img src={user.picture} alt={user.name} />
+                      <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+                        ID: {user.sub}
+                        <Divider />
+                        Usuario: {user.nickname}
+                        <Divider />
+                        Nombres: {user.given_name}
+                        <Divider />
+                        Apellidos: {user.family_name }
+                        <Divider />
+                        Email: {user.email}
+                        <Divider />
+                        Idioma: {user.locale}
+                        <Divider />
+                        Actualizado en : {user.updated_at}
+                      </Typography>
+                      
+                      
+                    </Box>
+                  </Modal>
+                </div>
+                  <ListItemIcon>  
+                    <ManageAccountsSharpIcon/>
                   </ListItemIcon>
-                  <ListItemText primary={text} />
+                  <ListItemText primary='Profile' />
                 </ListItemButton>
               </ListItem>
-            ))}</>
-             
-           
+            </>
           </List>
 
           
-          <Divider />
+
           <List>
-          {isAuthenticated ? (
           <>
             {['Logout'].map((text, index) => (
               <ListItem key={text} disablePadding>
@@ -93,36 +134,22 @@ export function Nav() {
                   <ListItemText primary={text} />
                 </ListItemButton>
               </ListItem>
-            ))}
-            
+            ))} 
           </>
-        ) : (
-          <></>
-        )}
-            
-          </List>
+        </List>
         </Drawer>
+
         <Box
           component="main"
-          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
-        >
+          sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
           <Toolbar />
           <Typography paragraph>
-          
-          <div >
-          {isAuthenticated ? (
-          <>
-            <Profile />
-            <LogoutButton />
-            
-          </>
-        ) : (
-          <LoginButton />
-          
-        )}
-        </div>
+          <div >    
+            <Profile />   
+          </div>
           </Typography>
         </Box>
+
       </Box>
     );
   }
