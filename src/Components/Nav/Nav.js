@@ -12,10 +12,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 
 import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
 import PersonIcon from '@mui/icons-material/Person';
 import ManageAccountsSharpIcon from '@mui/icons-material/ManageAccountsSharp';
 
@@ -31,8 +29,6 @@ const drawerWidth = 240;
 export function Nav() {
     const { user, isAuthenticated } = useAuth0();
     const {logout} = useAuth0();
-    const {loginWithRedirect} = useAuth0();
-    
     return (
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
@@ -42,11 +38,10 @@ export function Nav() {
         >
           <Toolbar>
             <Typography variant="h6" noWrap component="div">
-              Todo List
+              Todo List 
             </Typography>
           </Toolbar>
         </AppBar>
-        asdasdasd
         <Drawer
           sx={{
             width: drawerWidth,
@@ -67,7 +62,7 @@ export function Nav() {
           <List>
             
 
-              {isAuthenticated ? (
+              
                 <>{[user.name,user.email, 'Profile'].map((text, index) => (
               <ListItem key={text} disablePadding>
                 <ListItemButton >
@@ -80,18 +75,7 @@ export function Nav() {
                 </ListItemButton>
               </ListItem>
             ))}</>
-              ) : (
-                <>{["Login"].map((text, index) => (
-                  <ListItem key={text} disablePadding>
-                    <ListItemButton onClick={()=>loginWithRedirect()}>
-                      <ListItemIcon>
-                        {index === 0 ? <LoginIcon /> : <></>}
-                      </ListItemIcon>
-                      <ListItemText primary={text} />
-                    </ListItemButton>
-                  </ListItem>
-                ))}</>
-              )}
+             
            
           </List>
 
