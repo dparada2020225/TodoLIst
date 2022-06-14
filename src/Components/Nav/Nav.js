@@ -81,15 +81,18 @@ export function Nav() {
               <>
               <ListItem disablePadding>
                 <ListItemButton onClick={handleOpen} >
-                  
-                  <div>
+                  <ListItemIcon>  
+                    <ManageAccountsSharpIcon/>
+                  </ListItemIcon>
+                  <ListItemText primary='Profile' />
+                </ListItemButton>  
+                <div>
                   <Modal
                     keepMounted
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-description"
-                  > 
+                    aria-describedby="keep-mounted-modal-description"> 
                     <Box sx={style}>
                     <img src={user.picture} alt={user.name} />
                       <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
@@ -107,21 +110,14 @@ export function Nav() {
                         <Divider />
                         Actualizado en : {user.updated_at}
                       </Typography>
-                      
-                      
                     </Box>
                   </Modal>
                 </div>
-                  <ListItemIcon>  
-                    <ManageAccountsSharpIcon/>
-                  </ListItemIcon>
-                  <ListItemText primary='Profile' />
-                </ListItemButton>
               </ListItem>
             </>
           </List>
 
-          
+          <Divider />
 
           <List>
           <>
@@ -138,7 +134,6 @@ export function Nav() {
           </>
         </List>
         </Drawer>
-
         <Box
           component="main"
           sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
