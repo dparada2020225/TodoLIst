@@ -7,32 +7,17 @@ import './Main.css'
 
 
 const Main = () => { 
-    // return (   
-    //     <React.StrictMode>
-    //         <LoginButton />
-    //         <Nav/>
-            
-    //     </React.StrictMode>
-    // )
-
-    const { isAuthenticated } = useAuth0();
-
+  const { isAuthenticated } = useAuth0();
   return (
     <React.StrictMode>
-    <div className="App">
-      <header className="App-header">
-        
         {isAuthenticated ? (
           <>
-            {/* <Profile />
-            <LogoutButton /> */}
             <Nav/>
           </>
         ) : (
           <LoginButton />
         )}
-      </header>
-    </div>
+      
     </React.StrictMode>
   );    
 }

@@ -17,7 +17,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import ManageAccountsSharpIcon from '@mui/icons-material/ManageAccountsSharp';
 
 import { useAuth0 } from '@auth0/auth0-react'
-import {Profile} from "../Profile/Profile"
+// import {TodoList} from "../TodoLIst/TodoList"
+// import TodoList2 from "../TodoList2/TodoList2"
+import TodoApp from "../TodoList3/todoApp"
 
 import Modal from '@mui/material/Modal';
 
@@ -140,7 +142,8 @@ export function Nav() {
           <Toolbar />
           <Typography paragraph>
           <div >    
-            <Profile />   
+            {/* <TodoList />    */}
+            <TodoApp/>
           </div>
           </Typography>
         </Box>
