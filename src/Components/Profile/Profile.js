@@ -76,23 +76,37 @@ export const Profile= ()=> {
         aria-describedby="keep-mounted-modal-description"
       >
         <Box sx={style}>
-        <img src={user.picture} alt={user.name} />
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-            ID: {user.sub}
-            <Divider />
-            Usuario: {user.nickname}
-            <Divider />
-            Nombres: {user.given_name}
-            <Divider />
-            Apellidos: {user.family_name }
-            <Divider />
-            Email: {user.email}
-            <Divider />
-            Idioma: {user.locale}
-            <Divider />
-            Actualizado en : {user.updated_at}
-          </Typography>
-        </Box>
+                    <img src={user.picture} alt={user.name} />
+                      <Typography id="keep-mounted-modal-description">
+                        ID: {user.sub}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        User: {user.nickname}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Names: {user.given_name}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Surnames: {user.family_name }
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        E-mail: {user.email}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Idiom: {user.locale}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Registred: {user.updated_at}
+                        {/* Actualizado en : {user.updated_at} */}
+                      </Typography>
+                      <Divider/>
+                    </Box>
       </Modal>
     </div>
       

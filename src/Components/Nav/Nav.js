@@ -97,21 +97,35 @@ export function Nav() {
                     aria-describedby="keep-mounted-modal-description"> 
                     <Box sx={style}>
                     <img src={user.picture} alt={user.name} />
-                      <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
+                      <Typography id="keep-mounted-modal-description">
                         ID: {user.sub}
-                        <Divider />
-                        Usuario: {user.nickname}
-                        <Divider />
-                        Nombres: {user.given_name}
-                        <Divider />
-                        Apellidos: {user.family_name }
-                        <Divider />
-                        Email: {user.email}
-                        <Divider />
-                        Idioma: {user.locale}
-                        <Divider />
-                        Actualizado en : {user.updated_at}
                       </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        User: {user.nickname}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Names: {user.given_name}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Surnames: {user.family_name }
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        E-mail: {user.email}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Idiom: {user.locale}
+                      </Typography>
+                      <Divider/>
+                      <Typography id="keep-mounted-modal-description">
+                        Registred: {user.updated_at}
+                        {/* Actualizado en : {user.updated_at} */}
+                      </Typography>
+                      <Divider/>
                     </Box>
                   </Modal>
                 </div>
@@ -139,13 +153,9 @@ export function Nav() {
         <Box
           component="main"
           sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
-          <Toolbar />
-          <Typography paragraph>
-          <div >    
-            {/* <TodoList />    */}
+          <Toolbar /> 
             <TodoApp/>
-          </div>
-          </Typography>
+          
         </Box>
 
       </Box>

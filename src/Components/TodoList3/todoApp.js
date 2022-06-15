@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Todo from "./todo";
 
+import Button from '@mui/material/Button';
+
 import "./todoApp.css";
 
 export default function TodoApp() {
@@ -44,8 +46,6 @@ export default function TodoApp() {
     const temp = [...todos];
     const item = temp.find((item) => item.id === id);
     item.completed = status;
-
-    console.log("Holis");
     setTodos([...temp]);
   }
 
@@ -57,7 +57,19 @@ export default function TodoApp() {
           value={title}
           className="todoInput"
         />
-        <input value="Create todo" type={"submit"} className="buttonCreate" />
+        {/* <input value="Create todo" type={"submit"} className="buttonCreate" /> */}
+        <Button variant="contained" color="success" value="Create todo" type={"submit"} className="buttonCreate" 
+          sx={{ 
+            backgroundColor: '#24DC03',
+            Textcolor: "black",
+            opacity: [0.8],
+            '&:hover': {
+              backgroundColor: '#1DBF00',
+              opacity: [1 ],
+              },
+          }}>
+        Add
+          </Button>
       </form>
 
       <div className="todosContainer">

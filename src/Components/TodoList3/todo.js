@@ -1,6 +1,8 @@
 import { useState } from "react";
-
 import "./todoApp.css";
+import Checkbox from '@mui/material/Checkbox';
+
+import Button from '@mui/material/Button';
 
 export default function Todo({ item, onUpdate, onComplete, onDelete }) {
   const [isEdit, setIsEdit] = useState(false);
@@ -35,32 +37,60 @@ export default function Todo({ item, onUpdate, onComplete, onDelete }) {
             value={value}
             onChange={handleChange}
           />
-          <button className="button" onClick={handleUpdate}>
+          <Button variant="contained" color="primary" className="button" onClick={handleUpdate}
+          sx={{ 
+            backgroundColor: '#10963B',
+            Textcolor: "black",
+            opacity: [0.8],
+            '&:hover': {
+              backgroundColor: '#10963B',
+              opacity: [1 ],
+              },
+          }}
+          >
             Update
-          </button>
+          </Button>
         </form>
       ) : (
         <div className="todoInfo">
-          <input
-            type={"checkbox"}
+          <Checkbox color="success"
+            // type={"checkbox"}
             onChange={handleCheckboxChange}
             checked={item.checked}
           />
           <span
             className="todoTitle"
             style={{
-              color: item.completed ? "#ccc" : "",
+              // color: item.completed ? "#ccc" : "",
+              color: item.completed ? "#24DC03" : "#0E41EF" ,
               textDecoration: item.completed ? "line-through" : "",
             }}
           >
             {item.title}
           </span>
-          <button className="button" onClick={() => setIsEdit(true)}>
+          <Button variant="contained" className="button" onClick={() => setIsEdit(true)}
+          sx={{ 
+            backgroundColor: '#FF8000',
+            Textcolor: "black",
+            opacity: [0.8],
+            '&:hover': {
+              backgroundColor: '#FF8000',
+              opacity: [1 ],
+              },
+            }}>
             Edit
-          </button>
-          <button className="buttonDelete" onClick={() => onDelete(item.id)}>
-            Update
-          </button>
+          </Button>
+          <Button variant="contained"  color="error" className="buttonDelete" onClick={() => onDelete(item.id)}
+          sx={{
+            backgroundColor: '#FF0000',
+            opacity: [0.8],
+            '&:hover': {
+              backgroundColor: '#FF0000',
+              opacity: [1 ],
+              },
+          }}>
+            Delete
+          </Button>
         </div>
       )}
     </div>
