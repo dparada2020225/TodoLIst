@@ -1,8 +1,6 @@
 function LandingFrame() {
     const style = {
-        // "background-image": `url(https://image.winudf.com/v2/image1/YXBwLm5pZnUuc2ltcGxldG9kb19zY3JlZW5fMF8xNjI2ODk4NDU5XzA1OQ/screen-0.jpg?fakeurl=1&type=.webp)`,
-        // "background-image": `url(https://miro.medium.com/max/850/1*XyUnGNSPwZJYl0wng2w92Q.jpeg)`,
-        backgroundImage: `url(https://miro.medium.com/max/1400/1*aDRqWMh-tBnxM8wRNUpN3w.png)`,
+        backgroundImage: `url(https://img.freepik.com/foto-gratis/circulo-neon-fondo-calle-oscura-reflejo-neon-azul-rojo-sobre-asfalto_129911-28.jpg?w=900)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         position: "absolute",
@@ -14,8 +12,6 @@ function LandingFrame() {
 
 
 function HomePage() {
-    return <div>
-        <LandingFrame />
-    </div>
+    return <div> <LandingFrame />  </div>
 }
 export default HomePage

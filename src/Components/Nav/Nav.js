@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth0 } from '@auth0/auth0-react'
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,23 +12,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Modal from '@mui/material/Modal';
 import MailIcon from '@mui/icons-material/Mail';
-
 import LogoutIcon from '@mui/icons-material/Logout';
 import ManageAccountsSharpIcon from '@mui/icons-material/ManageAccountsSharp';
-
-import { useAuth0 } from '@auth0/auth0-react'
-// import {TodoList} from "../TodoLIst/TodoList"
-// import TodoList2 from "../TodoList2/TodoList2"
-import TodoApp from "../TodoList3/todoApp"
-
-import Modal from '@mui/material/Modal';
-
+import TodoApp from "../TodoList/TodoApp"
 import './Nav.css'
 
 
 const drawerWidth = 240;
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -42,7 +35,6 @@ const style = {
 
 export function Nav() {
     const { user, logout, isLoading } = useAuth0();
-
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -51,14 +43,17 @@ export function Nav() {
       return <div>Loading...</div>;
     }
     return (
+      
       <Box sx={{ display: 'flex' }}>
+
         <CssBaseline />
+
         <AppBar
           position="fixed"
           sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}>
           <Toolbar>
             <Typography variant="h6" noWrap component="div">
-              Todo-List 
+              Todo-List of {user.name}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -74,13 +69,12 @@ export function Nav() {
           }}
           variant="permanent"
           anchor="left">
-          
-          {/* <Toolbar /> */}
 
           <img src={user.picture} alt={user.name} />
+
           <Divider />
-          <List>
-              <>
+
+          <List>             
               <ListItem disablePadding>
                 <ListItemButton onClick={handleOpen} >
                   <ListItemIcon>  
@@ -97,9 +91,9 @@ export function Nav() {
                     aria-describedby="keep-mounted-modal-description"> 
                     <Box sx={style}>
                     <img src={user.picture} alt={user.name} />
-                      <Typography id="keep-mounted-modal-description">
+                      {/* <Typography id="keep-mounted-modal-description">
                         ID: {user.sub}
-                      </Typography>
+                      </Typography> */}
                       <Divider/>
                       <Typography id="keep-mounted-modal-description">
                         User: {user.nickname}
@@ -129,8 +123,8 @@ export function Nav() {
                     </Box>
                   </Modal>
                 </div>
-              </ListItem>
-            </>
+
+              </ListItem>    
           </List>
 
           <Divider />
@@ -148,16 +142,19 @@ export function Nav() {
               </ListItem>
             ))} 
           </>
-        </List>
+          </List>
+        
         </Drawer>
+
+
         <Box
           component="main"
           sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
           <Toolbar /> 
             <TodoApp/>
-          
         </Box>
 
       </Box>
     );
   }
+  export default Nav;

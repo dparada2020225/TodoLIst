@@ -1,14 +1,27 @@
-import { useState } from "react";
-import Todo from "./todo";
-
+import { useState, useEffect } from "react";
+import Todo from "./Todo";
+import { useAuth0 } from '@auth0/auth0-react'
 import Button from '@mui/material/Button';
-
 import "./todoApp.css";
 
-export default function TodoApp() {
+function TodoApp() {
   const [title, setTitle] = useState("");
   const [todos, setTodos] = useState([]);
+  const { user} = useAuth0();
+
   // const [editItem, setEditItem] = useState(null);
+  useEffect(() => {
+    obtenerTareas()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
+  function obtenerTareas(){
+  if(localStorage.getItem(user.sub)){
+    setTodos(JSON.parse(localStorage.getItem(user.sub)));
+  }else{
+    console.log(user.name+user.sub);
+  }
+  }
 
   function handleInputChange(e) {
     setTitle(e.target.value);
@@ -27,6 +40,7 @@ export default function TodoApp() {
 
     setTodos(oldTodos);
     setTitle("");
+    localStorage.setItem(user.sub, (JSON.stringify(oldTodos)));
   }
 
   function handleDelete(id) {
@@ -80,9 +94,11 @@ export default function TodoApp() {
             onUpdate={handleUpdate}
             onDelete={handleDelete}
             onComplete={handleCheckboxChange}
+            
           />
         ))}
       </div>
     </div>
   );
 }
+export default TodoApp;

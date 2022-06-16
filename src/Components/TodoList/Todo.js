@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "./todoApp.css";
-import Checkbox from '@mui/material/Checkbox';
+//import { useAuth0 } from '@auth0/auth0-react'
 
+import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 
-export default function Todo({ item, onUpdate, onComplete, onDelete }) {
+function Todo({ item, onUpdate, onComplete, onDelete }) {
   const [isEdit, setIsEdit] = useState(false);
   const [value, setValue] = useState(item.title ?? "");
+
+  //const { user} = useAuth0();
+  console.log(value)
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -96,3 +100,4 @@ export default function Todo({ item, onUpdate, onComplete, onDelete }) {
     </div>
   );
 }
+export default Todo;
