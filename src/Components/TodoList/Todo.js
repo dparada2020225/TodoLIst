@@ -10,7 +10,7 @@ function Todo({ item, onUpdate, onComplete, onDelete }) {
   const [value, setValue] = useState(item.title ?? "");
 
   //const { user} = useAuth0();
-  console.log(value)
+  // console.log(value)
 
   function handleChange(e) {
     setValue(e.target.value);
@@ -58,9 +58,9 @@ function Todo({ item, onUpdate, onComplete, onDelete }) {
       ) : (
         <div className="todoInfo">
           <Checkbox color="success"
-            // type={"checkbox"}
             onChange={handleCheckboxChange}
-            checked={item.checked}
+            checked={item.completed}
+            // checked={item.checked}
           />
           <span
             className="todoTitle"

@@ -8,6 +8,7 @@ function TodoApp() {
   const [title, setTitle] = useState("");
   const [todos, setTodos] = useState([]);
   const { user} = useAuth0();
+  console.log(todos)
 
   // const [editItem, setEditItem] = useState(null);
   useEffect(() => {
@@ -47,6 +48,7 @@ function TodoApp() {
     const tempTodos = todos.filter((item) => item.id !== id);
 
     setTodos([...tempTodos]);
+    localStorage.setItem(user.sub, (JSON.stringify([...tempTodos])));
   }
 
   function handleUpdate(id, value) {
@@ -54,6 +56,8 @@ function TodoApp() {
     const item = temp.find((item) => item.id === id);
     item.title = value;
     setTodos([...temp]);
+    
+    localStorage.setItem(user.sub, (JSON.stringify([...temp])));
   }
 
   function handleCheckboxChange(id, status) {
@@ -61,6 +65,7 @@ function TodoApp() {
     const item = temp.find((item) => item.id === id);
     item.completed = status;
     setTodos([...temp]);
+    localStorage.setItem(user.sub, (JSON.stringify([...temp])));
   }
 
   return (
